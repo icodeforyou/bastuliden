@@ -12,7 +12,7 @@ class AddVisibleColumn extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table("members", function(Blueprint $table)
+		Schema::table("users", function(Blueprint $table)
 		{
 			$table->tinyInteger("visible")->default(0);
 		});
@@ -25,7 +25,7 @@ class AddVisibleColumn extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table("members", function(Blueprint $table)
+		Schema::table("users", function(Blueprint $table)
 		{
 			$table->dropColumn("visible");
 		});

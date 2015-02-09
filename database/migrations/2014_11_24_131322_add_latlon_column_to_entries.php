@@ -12,7 +12,7 @@ class AddLatlonColumnToEntries extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('members', function(Blueprint $table)
+		Schema::table('users', function(Blueprint $table)
 		{
 			$table->decimal("lat", 10, 8);
 			$table->decimal("lon", 11, 8);
@@ -27,7 +27,7 @@ class AddLatlonColumnToEntries extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('members', function(Blueprint $table)
+		Schema::table('users', function(Blueprint $table)
 		{
 			$table->dropColumn("lat");
 			$table->dropColumn("lon");

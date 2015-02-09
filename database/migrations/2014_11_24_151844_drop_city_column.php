@@ -12,7 +12,7 @@ class DropCityColumn extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('members', function(Blueprint $table)
+		Schema::table('users', function(Blueprint $table)
 		{
 			$table->dropColumn("city");
 		});
@@ -26,7 +26,7 @@ class DropCityColumn extends Migration {
 	 */
 	public function down()
 	{
-		Schema::create('members', function(Blueprint $table)
+		Schema::create('users', function(Blueprint $table)
 		{
 			$table->string("city");
 		});
