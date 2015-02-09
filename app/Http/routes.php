@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+use App\Models\User;
 
 Route::get('home', 'HomeController@index');
 
@@ -19,3 +19,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+get("/", function () {
+    return view("welcome", ["users" => User::Visible()->get()->sortBy("address")]);
+});
