@@ -21,5 +21,6 @@ Route::controllers([
 ]);
 
 get("/", function () {
-    return view("welcome", ["users" => User::Visible()->get()->sortBy("address")]);
+    $users = User::Visible()->with("payments")->get()->sortBy("address");
+    return view("welcome", ["users" => $users]);
 });
