@@ -1,14 +1,14 @@
 <html>
     <head>
         <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
-
+        <link rel="stylesheet" href="css/app.css"/>
         <style>
             body {
                 margin: 0;
                 padding: 0;
                 width: 100%;
                 height: 100%;
-                color: #B0BEC5;
+                color: #798289;
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
@@ -37,7 +37,7 @@
             <div class="content">
                 <div class="title">Bastulidens<br />fiberförening</div>
                 <h4>Våra medlemmar</h4>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Adress</th>
@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{ $user->address }}</td>
                             <td>{{ $user->house_number }}</td>
-                            <td></td>
+                            <td style="text-align: center">{{ $user->signup_fee_paid ? "Ja" : "Nej" }}</td>
                         </tr>
                     @endforeach
                     </tbody>
