@@ -50,15 +50,22 @@
                         <tr>
                             <td>{{ $user->address }}</td>
                             <td>{{ $user->house_number }}</td>
-                            <td style="text-align: center">{{ $user->signup_fee_paid ? "Ja" : "Nej" }}</td>
+                            <td style="text-align: center; vertical-align:middle">
+                            @if ($user->signup_fee_paid)
+                                <span class="label label-success">Betalt</span>
+                            @else 
+                                <button class="btn-xs btn btn-primary" data-toggle="modal" data-target="#betala">Betala</button>
+                            @endif
+                            </td>
+                            
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-
-
             </div>
         </div>
+        
+        @include ("modals.pay")
 
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     </body>

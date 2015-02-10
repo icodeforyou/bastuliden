@@ -15,8 +15,19 @@ elixir(function(mix) {
     mix.less('app.less');
 });
 
+// elixir(function(mix) {
+//     mix.scripts([
+//         "map.js"
+//     ]);
+// });
+
+var paths = {
+    'bootstrap': '/node_modules/bootstrap/dist/'
+}
+
 elixir(function(mix) {
-    mix.scripts([
-        "map.js"
-    ]);
+    mix.copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
+        .scripts([
+            paths.bootstrap + "js/bootstrap.js"
+        ], 'public/js/app.js');
 });
