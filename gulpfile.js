@@ -11,23 +11,25 @@ var elixir = require('laravel-elixir');
  |
  */
 
+var paths = {
+    'bootstrap': './node_modules/bootstrap/dist/'
+}
+
+elixir(function(mix) {
+    mix.copy(paths.bootstrap + 'fonts/bootstrap/fonts', 'public/fonts')
+        .copy(paths.bootstrap + "js/bootstrap.js", 'resources/assets/js/bootstrap.js');
+});
+
 elixir(function(mix) {
     mix.less('app.less');
 });
 
-// elixir(function(mix) {
-//     mix.scripts([
-//         "map.js"
-//     ]);
-// });
-
-var paths = {
-    'bootstrap': '/node_modules/bootstrap/dist/'
-}
-
 elixir(function(mix) {
-    mix.copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
-        .scripts([
-            paths.bootstrap + "js/bootstrap.js"
-        ], 'public/js/app.js');
+    mix.scripts(['app.js', 'bootstrap.js'], '../public/js/all.js');
 });
+
+/*
+elixir(function(mix) {
+    mix.scripts(['app.js', 'bootstrap.js'], 'public/js/all.js')
+});
+*/
