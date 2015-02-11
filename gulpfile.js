@@ -11,21 +11,16 @@ var elixir = require('laravel-elixir');
  |
  */
 
-var paths = {
-    'bootstrap': './node_modules/bootstrap/dist/'
-}
-var combine_dir = 'resources/assets';
 
 // set scripts to combine
 var scripts = [
-    '../../node_modules/bootstrap/dist/js/bootstrap.js',
-    './js/app.js'
+    'app.js',
+    '../../node_modules/bootstrap/dist/js/bootstrap.js'
 ];
 
 elixir(function(mix) {
-    mix.copy(paths.bootstrap + 'fonts/bootstrap/fonts', 'public/fonts')
-  //      .copy(paths.bootstrap + "js/bootstrap.js", 'resources/assets/js/bootstrap.js')
+    mix.copy('node_modules/bootstrap/dist/fonts', 'public/fonts')
         .less('app.less')
-        .scripts(scripts);
+        .scripts(scripts, 'public/js/all.js', 'public/js');
 });
 
