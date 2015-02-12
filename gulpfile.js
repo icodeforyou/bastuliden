@@ -14,13 +14,11 @@ var elixir = require('laravel-elixir');
 
 // set scripts to combine
 var scripts = [
-    'app.js',
-    '../../node_modules/bootstrap/dist/js/bootstrap.js'
+    'app.js'
 ];
 
 elixir(function(mix) {
-    mix.copy('node_modules/bootstrap/dist/fonts', 'public/fonts')
-        .less('app.less')
+    mix.less('app.less')
         .scripts(scripts, 'public/js/all.js', 'public/js');
 });
 
