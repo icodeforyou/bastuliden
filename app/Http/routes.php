@@ -20,7 +20,15 @@ Route::controllers([
     "password" => "Auth\PasswordController",
 ]);
 
-get("/", function () {
+get("/", ['middleware' => 'auth', function() {
+   return view("home");
+}]);
+
+get("users", ['middleware' => 'auth', function () {
     $users = User::Visible()->with("payments")->get()->sortBy("address");
-    return view("welcome", ["users" => $users]);
-});
+    return view("users", ["users" => $users]);
+}]);
+
+get("users/{user_id}", ['middleware' => 'auth', function($user_id) {
+   return $user_id;
+}]);

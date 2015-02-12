@@ -42,7 +42,8 @@
                         <tr>
                             <th>Adress</th>
                             <th>Fastighetsbeteckning</th>
-                            <th>Betalt avgift</th>
+                            <th>Betalt årsavgift</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,18 +52,15 @@
                             <td>{{ $user->address }}</td>
                             <td>{{ $user->house_number }}</td>
                             <td style="text-align: center; vertical-align:middle">
-                            @if ($user->signup_fee_paid)
-                                <span class="label label-success">Betalt</span>
-                            @else 
-                                <button class="btn-xs btn btn-primary" data-toggle="modal" data-target="#betala">Betala</button>
-                            @endif
+                                {{ $user->signup_fee_paid ? "Ja" : "Nej" }}
                             </td>
-                            
+                            <td>
+                                <a href="/user/{{ $user->id }}" class="btn-xs btn btn-primary">Hantera</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                @include ("modals.pay")
             </div>
 
         </div>
