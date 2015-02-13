@@ -9,7 +9,6 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
-
                             <h4>Fastigheter</h4>
                             <table class="table">
                                 <thead>
@@ -38,6 +37,13 @@
                                         <th>Datum</th>
                                     </tr>
                                 </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" style="text-align: right">
+                                            <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
                                     @foreach ($user->payments as $payment)
                                         <tr>
@@ -47,8 +53,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
-
                         </div>
                         <div class="col-md-4">
                             @if (!$user->signup_fee_paid)
@@ -67,5 +71,7 @@
             </div>
         </div>
     </div>
+    @include("modals.pay")
 </div>
+
 @endsection

@@ -39,7 +39,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function payments()
     {
-        return $this->hasMany("App\\Models\\Payment");
+        return $this->hasMany("App\\Models\\Payment")->orderBy("created_at", "desc");
     }
 
     public function estates()
