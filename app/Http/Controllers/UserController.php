@@ -57,7 +57,7 @@ class UserController extends Controller {
      */
     public function show($id)
     {
-        return view("user", ["user" => $this->user->with("payments")->find($id)]);
+        return view("user", ["user" => $this->user->with(["payments", "estates"])->find($id)]);
     }
 
     /**

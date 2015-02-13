@@ -9,6 +9,27 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8">
+
+                            <h4>Fastigheter</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Adress</th>
+                                        <th>Fastighetsbeteckning</th>
+                                        <th>Antal anslutningar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($user->estates as $estate)
+                                        <tr>
+                                            <td>{{ $estate->address }}</td>
+                                            <td>{{ $estate->property_nbr }}</td>
+                                            <td style="text-align: center">{{ $estate->connections }} st</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                             <h4>Inbetalningar</h4>
                             <table class="table">
                                 <thead>
@@ -26,6 +47,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+
                         </div>
                         <div class="col-md-4">
                             @if (!$user->signup_fee_paid)
