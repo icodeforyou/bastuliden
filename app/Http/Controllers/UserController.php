@@ -9,6 +9,7 @@ use App\Models\Estates;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller {
 
@@ -96,18 +97,24 @@ class UserController extends Controller {
      */
     public function edit($id)
     {
-        //
+        return view("edit_user", ["user" => $this->user->find($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param $user_id
      * @return Response
      */
-    public function update($id)
+    public function update($user_id)
     {
-        //
+        $this->user->find($user_id)->update([
+            "name" => Input::get("name"),
+            "name2" => Input::get("name2"),
+            "email" => Input::get("email")
+        ]);
+
+        return redirect("/users/" . $user_id);
     }
 
     /**
