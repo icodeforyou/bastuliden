@@ -19,7 +19,8 @@ class PaymentController extends Controller {
     {
         $payment->create([
             "user_id" => $request->input("id"),
-            "amount" => $request->input("amount")
+            "amount" => $request->input("amount"),
+            "signup_fee" => $request->input("signup_fee") ? 1 : 0
         ]);
 
         return redirect("/users/" . $request->input("id"));

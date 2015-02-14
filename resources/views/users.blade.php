@@ -6,27 +6,27 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Bastulidens medlemsregister</div>
-                <table class="table">
+                <table class="table users-table">
                     <thead>
                         <tr>
                            <th>Namn</th>
-                           <th>Adress</th>
-                           <th>Fastighetsbeteckning</th>
+                           <th>E-post</th>
+                           <th>Antal fastigheter</th>
                            <th>Betalt årsavgift</th>
-                           <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($users as $user)
-                        <tr>
+                        <tr onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->address }}</td>
-                            <td>{{ $user->house_number }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td style="text-align: center">{{ count($user->estates) }}</td>
                             <td style="text-align: center; vertical-align:middle">
-                               {{ $user->signup_fee_paid ? "Ja" : "Nej" }}
-                            </td>
-                            <td>
-                               <a href="/users/{{ $user->id }}" class="btn-xs btn btn-primary">Hantera</a>
+                                @if ($user->paidSignupFee)
+                                    <span class="label label-success">Ja</span>
+                                @else
+                                    <span class="label label-default">Nej</span>
+                                @endif
                             </td>
                         </tr>
                    @endforeach

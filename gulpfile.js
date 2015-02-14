@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
 
 // set scripts to combine
 var scripts = [
-    'app.js'
+    '../../resources/assets/js/app.js'
 ];
 
 elixir(function(mix) {

@@ -24,8 +24,9 @@ get("/", ['middleware' => 'auth', function() {
    return view("home");
 }]);
 
+get("users/new", ['middleware' => 'auth', "uses" => "UserController@create"]);
 get("users", ['middleware' => 'auth', "uses" => "UserController@index"]);
-
 get("users/{user_id}", ["middleware" => "auth", "uses" => "UserController@show"]);
 
 post("users/{user_id}/new-payment", ["middleware" => "auth", "uses" => "PaymentController@store"]);
+post("users/new", ['middleware' => 'auth', "uses" => "UserController@store"]);

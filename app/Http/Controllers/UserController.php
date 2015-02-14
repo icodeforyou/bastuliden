@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\StoreUserPost;
+use App\Models\Estates;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
 
@@ -25,7 +28,7 @@ class UserController extends Controller {
      */
     public function index()
     {
-        $users = $this->user->visible()->with("payments")->get()->sortBy("address");
+        $users = $this->user->visible()->with(["payments", "paidSignupFee", "estates"])->get()->sortBy("address");
         return view("users", ["users" => $users]);
     }
 
@@ -36,17 +39,42 @@ class UserController extends Controller {
      */
     public function create()
     {
-        //
+        return view("new_user");
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param StoreUserPost $request
+     * @param Estates $estates
+     * @throws
      * @return Response
      */
-    public function store()
+    public function store(StoreUserPost $request, Estates $estates)
     {
-        //
+         $newUser = $this->user->create([
+             "name" => $request->input("name"),
+             "name2" => $request->input("name2"),
+             "email" => $request->input("email"),
+             "visible" => 1,
+             "password" => Hash::make("fiber")
+         ]);
+
+        if($newUser) {
+            $estate = new $estates([
+                "address" => $request->input("address"),
+                "postalcode" => $request->input("postalcode"),
+                "city" => $request->input("city"),
+                "property_nbr" => $request->input("property_nbr"),
+                "connections" => $request->input("connections")
+            ]);
+
+            $newUser->estates()->save($estate);
+
+            return redirect("/users/" . $newUser->id);
+        }
+
+        throw exception("Kunde inte skapa en ny medlem");
     }
 
     /**
@@ -57,7 +85,7 @@ class UserController extends Controller {
      */
     public function show($id)
     {
-        return view("user", ["user" => $this->user->with(["payments", "estates"])->find($id)]);
+        return view("user", ["user" => $this->user->with(["payments", "paidSignupFee", "estates"])->find($id)]);
     }
 
     /**

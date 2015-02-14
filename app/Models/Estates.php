@@ -7,4 +7,6 @@ class Estates extends Model {
 
     protected $table = "estates";
 
+    protected $guarded = [];
+
 }

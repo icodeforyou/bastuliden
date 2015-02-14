@@ -55,7 +55,7 @@
                             </table>
                         </div>
                         <div class="col-md-4">
-                            @if (!$user->signup_fee_paid)
+                            @if (!$user->paidSignupFee)
                                 <div class="alert alert-danger" role="alert">
                                     <strong>OBS!</strong> Har ej betalat anmälningsavgift
                                 </div>

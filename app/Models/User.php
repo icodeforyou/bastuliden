@@ -18,12 +18,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $table = "users";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ["email", "name", "name2", "address", "lat", "lon", "postalCode", "house_number"];
+    protected $fillable = [
+        "email",
+        "name",
+        "name2",
+        "email",
+        "visible",
+        "password"
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -45,6 +47,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function estates()
     {
         return $this->hasMany("App\\Models\\Estates");
+    }
+
+    public function paidSignupFee()
+    {
+        return $this->hasOne("App\\Models\\Payment")->where("signup_fee", 1);
     }
 
 }
