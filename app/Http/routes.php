@@ -32,3 +32,4 @@ get("users/{user_id}", ["middleware" => "auth", "uses" => "UserController@show"]
 post("users/{user_id}/new-payment", ["middleware" => "auth", "uses" => "PaymentController@store"]);
 post("users/new", ['middleware' => 'auth', "uses" => "UserController@store"]);
 post("users/edit/{user_id}", ['middleware' => 'auth', "uses" => "UserController@update"]);
+post("estates/edit/{estate_id}", ['middleware' => 'auth', "uses" => "EstateController@update"]);

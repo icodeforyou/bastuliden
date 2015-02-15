@@ -92,12 +92,12 @@ class UserController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
     {
-        return view("edit_user", ["user" => $this->user->find($id)]);
+        return view("edit_user", ["user" => $this->user->with("estates")->find($id)]);
     }
 
     /**
