@@ -15,51 +15,55 @@
                     <div class="row">
                         <div class="col-md-8">
                             <h4>Fastigheter</h4>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Adress</th>
-                                        <th>Fastighetsbeteckning</th>
-                                        <th>Antal anslutningar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($user->estates as $estate)
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $estate->address }}</td>
-                                            <td>{{ $estate->property_nbr }}</td>
-                                            <td style="text-align: center">{{ $estate->connections }} st</td>
+                                            <th>Adress</th>
+                                            <th>Fastighetsbeteckning</th>
+                                            <th>Antal anslutningar</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($user->estates as $estate)
+                                            <tr>
+                                                <td>{{ $estate->address }}</td>
+                                                <td>{{ $estate->property_nbr }}</td>
+                                                <td style="text-align: center">{{ $estate->connections }} st</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <h4>Inbetalningar</h4>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Summa</th>
-                                        <th>Typ</th>
-                                        <th>Datum</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="3" style="text-align: right">
-                                            <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    @foreach ($user->payments as $payment)
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $payment->amount }}</td>
-                                            <td>{{ $payment->signup_fee ? "Avgift" : "Årsavgift" }}</td>
-                                            <td>{{ $payment->created_at }}</td>
+                                            <th>Summa</th>
+                                            <th>Typ</th>
+                                            <th>Datum</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" style="text-align: right">
+                                                <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($user->payments as $payment)
+                                            <tr>
+                                                <td>{{ $payment->amount }}</td>
+                                                <td>{{ $payment->signup_fee ? "Anmälningsavgift" : "Årsavgift" }}</td>
+                                                <td>{{ $payment->created_at }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="col-md-4">
 
@@ -68,8 +72,6 @@
                                     <strong>OBS!</strong> Har ej betalat anmälningsavgift
                                 </div>
                             @endif
-
-
 
                             <p><strong>{{ $user->name }} {{ $user->name2 ? "& " . $user->name2 : "" }}</strong></p>
                             <p>{{ $user->address }}</p>

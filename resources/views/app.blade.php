@@ -36,7 +36,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">Hem</a></li>
                     @if (Auth::check())
-                       <li><a href="/users">Medlemmar</a></li>
+                       <li><a href="/">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>
                     @endif
                 </ul>
