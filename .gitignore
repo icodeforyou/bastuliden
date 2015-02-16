@@ -6,3 +6,6 @@
 .DS_Store
 Thumbs.db
 /node_modules
+public/js/all.js
+public/css/app.css
+npm-debug.log
