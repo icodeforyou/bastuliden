@@ -33,3 +33,8 @@ post("users/{user_id}/new-payment", ["middleware" => "auth", "uses" => "PaymentC
 post("users/new", ['middleware' => 'auth', "uses" => "UserController@store"]);
 post("users/edit/{user_id}", ['middleware' => 'auth', "uses" => "UserController@update"]);
 post("estates/edit/{estate_id}", ['middleware' => 'auth', "uses" => "EstateController@update"]);
+
+// API routes
+$router->group(["prefix" => "/api/v1", "namespace" => "Api"], function($router) {
+    get("interested", "InterestedController@index");
+});
