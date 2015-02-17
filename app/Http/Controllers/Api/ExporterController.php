@@ -26,7 +26,7 @@ class ExporterController extends Controller {
         <Document><Folder>';
 
         foreach($allEstates as $estate) {
-            $string .= "\n<Placemark>
+            $string .= "\n<Placemark id=\"estate-id-" . $estate->id . "\">
     <name>" . $estate->address ."</name>
     <description>" . $estate->property_nbr ."</description>
     <Point>
