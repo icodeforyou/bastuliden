@@ -31,7 +31,9 @@ $router->group(["middleware" => "auth"], function($router) {
     get("users/edit/{user_id}", "UserController@edit");
     get("/", "UserController@index");
     get("users/{user_id}", "UserController@show");
-    get("create/email", "EmailController@create");
+    
+    get("emails/new", "EmailController@create");
+    get("emails/edit/{email_id}", "EmailController@edit");
     get("emails", "EmailController@index");
     get("emails/send/{email_id}", "EmailController@send");
 
@@ -39,7 +41,8 @@ $router->group(["middleware" => "auth"], function($router) {
     post("users/new", "UserController@store");
     post("users/edit/{user_id}", "UserController@update");
     post("estates/edit/{estate_id}", "EstateController@update");
-    post("create/email", "EmailController@store");
+    post("emails/new", "EmailController@store");
+    post("emails/edit/{email_id}", "EmailController@update");
 
 });
 

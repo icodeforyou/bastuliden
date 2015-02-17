@@ -39,7 +39,13 @@
                     @if (Auth::check())
                        <li><a href="/">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>
-                       <li><a href="/create/email">Skapa utskick</a></li>
+                       <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utskick <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/emails">Alla utskick</a></li>
+                            <li><a href="/emails/new">Skapa nytt</a></li>
+                        </ul>
+                       </li>
                     @endif
                 </ul>
 

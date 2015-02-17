@@ -46,7 +46,7 @@ class EmailController extends Controller {
 			return strlen($user->email)>0 ? $user : false; 
 		});
 
-		return view("create_email", ["users" => $usersWithEmail]);
+		return view("email", ["users" => $usersWithEmail]);
 	}
 
 	/**
@@ -98,9 +98,15 @@ class EmailController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($Id, User $user)
 	{
-		//
+		$users = $user->visible()->get();
+
+		$usersWithEmail = $users->filter(function($user) {
+			return strlen($user->email)>0 ? $user : false; 
+		});
+
+		return view("email", ["users" => $usersWithEmail, "email" => $this->email->find($Id)]);
 	}
 
 	/**
@@ -109,9 +115,16 @@ class EmailController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($Id, StoreEmailPost $request)
 	{
-		//
+
+		$this->email->find($Id)->update([
+			"email_content" => $request->input("email"),
+			"subject" => $request->input("subject"),
+			"recipients" => $request->input("recipients")
+		]);
+
+		return redirect("/emails");
 	}
 
 	/**
