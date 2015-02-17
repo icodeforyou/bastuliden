@@ -7,6 +7,7 @@
     <title>Bastulidens Fiberförening</title>
 
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/redactor.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -38,6 +39,7 @@
                     @if (Auth::check())
                        <li><a href="/">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>
+                       <li><a href="/create/email">Skapa utskick</a></li>
                     @endif
                 </ul>
 

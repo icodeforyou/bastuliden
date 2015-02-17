@@ -14,11 +14,12 @@ var elixir = require('laravel-elixir');
 
 // set scripts to combine
 var scripts = [
-    '../../resources/assets/js/app.js'
+    '../../resources/assets/js/app.js',
+    '../../resources/assets/js/redactor.js',
 ];
 
 elixir(function(mix) {
-    mix.less('app.less')
+    mix.less(['app.less', 'redactor.less'])
         .scripts(scripts, 'public/js/all.js', 'public/js');
 });
 

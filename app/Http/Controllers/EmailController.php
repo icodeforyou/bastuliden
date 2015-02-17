@@ -1,0 +1,128 @@
+<?php 
+namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Models\Email;
+use App\Models\User;
+use App\Http\Requests\StoreEmailPost;
+
+use Illuminate\Http\Request;
+
+use Mail;
+use Carbon;
+
+class EmailController extends Controller {
+
+	/**
+     * @var Email
+     */
+    private $email;
+
+    public function __construct(Email $email) {
+        $this->email = $email;
+    }
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		return view("emails", ["emails" => $this->email->get()->sortBy("created_at")]);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create(User $user)
+	{
+		$users = $user->visible()->get();
+
+		$usersWithEmail = $users->filter(function($user) {
+			return strlen($user->email)>0 ? $user : false; 
+		});
+
+		return view("create_email", ["users" => $usersWithEmail]);
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store(StoreEmailPost $request)
+	{
+		$this->email->create([
+			"email_content" => $request->input("email"),
+			"subject" => $request->input("subject"),
+			"recipients" => $request->input("recipients")
+		]);
+
+		return redirect("/emails");
+	}
+
+	public function send($Id)
+	{
+		$email = $this->email->find($Id);
+
+		$res = Mail::send("emails.newsletter", ["email" => $email->email_content], function ($message) use ($email) {
+            $message->from("no-reply@oktorp.se");
+            $message->to($email->recipients)->subject($email->subject);
+        });
+
+        $email->update([
+        	"sentout_at" => app("Carbon\\Carbon")
+       	]);
+        
+        return redirect("/emails");
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+}

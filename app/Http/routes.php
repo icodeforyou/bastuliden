@@ -24,15 +24,26 @@ get("/", ['middleware' => 'auth', function() {
    return view("home");
 }]);
 */
-get("users/new", ['middleware' => 'auth', "uses" => "UserController@create"]);
-get("users/edit/{user_id}", ['middleware' => 'auth', "uses" => "UserController@edit"]);
-get("/", ['middleware' => 'auth', "uses" => "UserController@index"]);
-get("users/{user_id}", ["middleware" => "auth", "uses" => "UserController@show"]);
 
-post("users/{user_id}/new-payment", ["middleware" => "auth", "uses" => "PaymentController@store"]);
-post("users/new", ['middleware' => 'auth', "uses" => "UserController@store"]);
-post("users/edit/{user_id}", ['middleware' => 'auth', "uses" => "UserController@update"]);
-post("estates/edit/{estate_id}", ['middleware' => 'auth', "uses" => "EstateController@update"]);
+$router->group(["middleware" => "auth"], function($router) {
+    
+    get("users/new", "UserController@create");
+    get("users/edit/{user_id}", "UserController@edit");
+    get("/", "UserController@index");
+    get("users/{user_id}", "UserController@show");
+    get("create/email", "EmailController@create");
+    get("emails", "EmailController@index");
+    get("emails/send/{email_id}", "EmailController@send");
+
+    post("users/{user_id}/new-payment", "PaymentController@store");
+    post("users/new", "UserController@store");
+    post("users/edit/{user_id}", "UserController@update");
+    post("estates/edit/{estate_id}", "EstateController@update");
+    post("create/email", "EmailController@store");
+
+});
+
+
 
 // API routes
 $router->group(["prefix" => "/api/v1", "namespace" => "Api"], function($router) {

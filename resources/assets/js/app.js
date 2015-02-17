@@ -5,11 +5,18 @@ $( document ).ready(function() {
     });
 
 });
+$(function()
+{
+    $('#contentEditable').redactor();
+});
 
 var geocoder = new google.maps.Geocoder();
 
 function initialize() {
     
+    if(typeof loc === 'undefined'){
+      return false;
+    }
 
     var centerLat = parseFloat(loc.estates[0].lat,10);
     var centerLon = parseFloat(loc.estates[0].lon,10);
