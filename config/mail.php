@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => "no-replay@icode4u.se", 'name' => "iCode4u"],
+    'from' => ['address' => "no-reply@oktorp.se", 'name' => "Fiberföreningen i Oktorp"],
 
     /*
     |--------------------------------------------------------------------------

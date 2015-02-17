@@ -51,4 +51,44 @@ $router->group(["middleware" => "auth"], function($router) {
 // API routes
 $router->group(["prefix" => "/api/v1", "namespace" => "Api"], function($router) {
     get("interested", "InterestedController@index");
+    get("kml", function(\App\Models\Estates $estates) {
+
+        $e = $estates->get();
+
+        /*
+          <?xml version="1.0" encoding="UTF-8"?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+              <Placemark>
+                <name>Simple placemark</name>
+                <description>Attached to the ground. Intelligently places itself
+                   at the height of the underlying terrain.</description>
+                <Point>
+                  <coordinates>-122.0822035425683,37.42228990140251,0</coordinates>
+                </Point>
+              </Placemark>
+            </kml>
+         */
+
+        $string = '<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">';
+        foreach($e as $f) {
+
+            $string .= "<Placemark>
+                <name>" . $f->address ."</name>
+                <description>Lorem ipsum</description>
+                <Point>
+                  <coordinates>" . $f->lat . "," . $f->lon ."</coordinates>
+                </Point>
+              </Placemark>";
+
+            }
+
+            $string .= "</kml>";
+
+        Storage::put("oktorp.kml", $string);
+
+        return "Japp";
+        //return response()->download("storage/app/oktorp.kml", "oktorp.kml", ["Content-Type" => "application/xml"]);
+
+    });
 });
