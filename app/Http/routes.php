@@ -87,8 +87,8 @@ $router->group(["prefix" => "/api/v1", "namespace" => "Api"], function($router) 
 
         Storage::put("oktorp.kml", $string);
 
-        return "Japp";
-        //return response()->download("storage/app/oktorp.kml", "oktorp.kml", ["Content-Type" => "application/xml"]);
+        return response()->download(storage_path("app/oktorp.kml"), "oktorp.kml", ["Content-Type" => "application/xml"]);
+
 
     });
 });
