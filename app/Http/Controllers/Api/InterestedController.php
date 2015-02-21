@@ -19,7 +19,7 @@ class InterestedController extends Controller {
 	public function index(Estates $estates)
 	{
 		$estates = $estates->with("user")->get()->sortBy("address");
-        return $estates;
+        return response($estates,200, ['Access-Control-Allow-Origin' => '*']);
 	}
 
 
