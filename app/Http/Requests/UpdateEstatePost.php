@@ -26,7 +26,9 @@ class UpdateEstatePost extends Request {
             "postalcode" => "required|numeric",
             "city" => "required",
             "property_nbr" => "required",
-            "connections" => "required"
+            "connections" => "required",
+            "lat" => "required",
+            "lon" => "required"
         ];
     }
 

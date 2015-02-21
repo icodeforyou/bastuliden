@@ -67,7 +67,9 @@ class UserController extends Controller {
                 "postalcode" => $request->input("postalcode"),
                 "city" => $request->input("city"),
                 "property_nbr" => $request->input("property_nbr"),
-                "connections" => $request->input("connections")
+                "connections" => $request->input("connections"),
+                "lat" => $request->input("lat"),
+                "lon" => $request->input("lon")
             ]);
 
             $newUser->estates()->save($estate);

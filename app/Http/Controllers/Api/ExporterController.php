@@ -23,19 +23,19 @@ class ExporterController extends Controller {
         $allEstates = $estates->get();
         $string = '<?xml version="1.0" encoding="UTF-8"?>
     <kml xmlns="http://www.opengis.net/kml/2.2">
-        <Document><Folder>';
+        <Document>';
 
         foreach($allEstates as $estate) {
             $string .= "\n<Placemark id=\"estate-id-" . $estate->id . "\">
     <name>" . $estate->address ."</name>
     <description>" . $estate->property_nbr ."</description>
     <Point>
-        <coordinates>" . $estate->lat . "," . $estate->lon .",0</coordinates>
+        <coordinates>" . $estate->lon . "," . $estate->lat ."</coordinates>
     </Point>
 </Placemark>";
         }
 
-        $string .= "</Folder></Document></kml>";
+        $string .= "</Document></kml>";
 
         Storage::put("oktorp.kml", $string);
 

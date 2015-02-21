@@ -24,6 +24,22 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
+            <label for="lat">Latitude</label>
+            <input type="text" name="lat" class="form-control" id="lat" placeholder="Latitude" value="{{{ isset($estate->lat) ? $estate->lat : "" }}}">
+            {{ $errors->first("lat") }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="lon">Longitude</label>
+            <input type="text" name="lon" class="form-control" id="lon" placeholder="Longitude" value="{{{ isset($estate->lon) ? $estate->lon : "" }}}">
+            {{ $errors->first("lon") }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
             <label for="property_nbr">Fastighetsbeteckning</label>
             <input type="text" name="property_nbr" class="form-control" id="property_nbr" placeholder="Fastighetsbeteckning" value="{{{ isset($estate->property_nbr) ? $estate->property_nbr : "" }}}">
             {{ $errors->first("property_nbr") }}
