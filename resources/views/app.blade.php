@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bastulidens Fiberförening</title>
+    <title>Oktorp Fiber</title>
 
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/redactor.css" rel="stylesheet">
@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Bastulidens Fiberförening</a>
+                <a class="navbar-brand" href="#">Oktorp fiber</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -71,7 +71,7 @@
     <!-- Scripts -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5rNcDdBPVT4yj1wlafH9NYCmIdf7W4RU"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABzK2OyQueuEFm_wClREKzmcqJMVY7VCA"></script>
     <script type="text/javascript" src="/js/all.js"></script>
 </body>
 </html>

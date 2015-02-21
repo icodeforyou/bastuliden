@@ -35,7 +35,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Bastulidens<br />fiberförening</div>
+                <div class="title">Oktorp<br />fiber</div>
                 <h4>Våra medlemmar</h4>
                 <table class="table">
                     <thead>
