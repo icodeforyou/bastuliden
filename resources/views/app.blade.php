@@ -71,7 +71,7 @@
     <!-- Scripts -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABzK2OyQueuEFm_wClREKzmcqJMVY7VCA"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnxx8GSwo9wTevNlsWOM2mvlTkXMc3I38"></script>
     <script type="text/javascript" src="/js/all.js"></script>
 </body>
 </html>
