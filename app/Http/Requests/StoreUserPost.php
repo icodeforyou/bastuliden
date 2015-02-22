@@ -23,7 +23,7 @@ class StoreUserPost extends Request {
     {
         return [
             "name" => "required",
-            "email" => "required|email",
+            "email" => "email",
             "address" => "required",
             "postalcode" => "required|numeric",
             "city" => "required",
