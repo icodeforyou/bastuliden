@@ -25,12 +25,13 @@ class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
+     * @param Estates $estates
      * @return Response
      */
-    public function index()
+    public function index(Estates $estates)
     {
         $users = $this->user->visible()->with(["payments", "paidSignupFee", "estates"])->get()->sortBy("address");
-        return view("users", ["users" => $users]);
+        return view("users", ["users" => $users, "num_estates" => $estates->all()->count()]);
     }
 
     /**

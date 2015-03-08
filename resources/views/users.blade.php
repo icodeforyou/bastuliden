@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Oktorp fiber intressenter <span class="pull-right">{{ count($users) }} intressenter</span></div>
+                <div class="panel-heading">Oktorp fiber intressenter <span class="pull-right">{{ $num_estates }} fastigheter</span></div>
                 <div class="table-responsive">
                     <table class="table users-table table-condensed">
                         <thead>
