@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ $user->name }}
+                    {{ $user->name }} {{ isset($user->name2) && strlen($user->name2) ? " & " . $user->name2 : "" }}
                     <span class="pull-right">
                         <a href="/users/edit/{{ $user->id }}" class="glyphicon glyphicon-pencil"></a>
                     </span>
@@ -36,34 +36,36 @@
                                 </table>
                             </div>
 
-                            <h4>Inbetalningar</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Summa</th>
-                                            <th>Typ</th>
-                                            <th>Datum</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="3" style="text-align: right">
-                                                <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach ($user->payments as $payment)
+                            @if (Auth::User()->isAdmin)
+                                <h4>Inbetalningar</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $payment->amount }}</td>
-                                                <td>{{ $payment->signup_fee ? "Anmälningsavgift" : "Årsavgift" }}</td>
-                                                <td>{{ $payment->created_at }}</td>
+                                                <th>Summa</th>
+                                                <th>Typ</th>
+                                                <th>Datum</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" style="text-align: right">
+                                                    <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            @foreach ($user->payments as $payment)
+                                                <tr>
+                                                    <td>{{ $payment->amount }}</td>
+                                                    <td>{{ $payment->signup_fee ? "Anmälningsavgift" : "Årsavgift" }}</td>
+                                                    <td>{{ $payment->created_at }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-4">
                             <script>
@@ -77,7 +79,7 @@
                             </script>
                             <div id="map-canvas" style="height:200px"></div>
 
-                            @if (!$user->paidSignupFee)
+                            @if (!$user->paidSignupFee && Auth::User()->isAdmin)
                                 <div class="alert alert-danger" role="alert">
                                     <strong>OBS!</strong> Har ej betalat anmälningsavgift
                                 </div>

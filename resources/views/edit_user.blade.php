@@ -15,7 +15,7 @@
                         <input type="hidden" name="id" value="{{{ $user->id }}}"/>
                         <input type="hidden" name="_token" value="{{{ Session::token() }}}"/>
 
-                        <a href="/users/{{ $user->id }}" class="btn btn-default">Avbryt</a>
+                        <a href="/" class="btn btn-default">Avbryt</a>
                         <button type="submit" class="btn btn-primary">Spara</button>
                     </form>
                     <hr/>

@@ -36,8 +36,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Hem</a></li>
-                    @if (Auth::check())
-                       <li><a href="/">Medlemmar</a></li>
+                    @if (Auth::check() && Auth::User()->isAdmin)
+                       <li><a href="/users">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>
                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utskick <span class="caret"></span></a>
@@ -55,7 +55,7 @@
                         <li><a href="/auth/register">Registrera</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/auth/logout">Logga ut</a></li>
                             </ul>

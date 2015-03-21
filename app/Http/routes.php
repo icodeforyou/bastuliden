@@ -11,27 +11,38 @@
 |
 */
 
-use App\Models\User;
-
-Route::get("home", "HomeController@index");
+use App\Http\Controllers\UserController;
 
 Route::controllers([
-    "auth" => "Auth\AuthController",
-    "password" => "Auth\PasswordController",
+    "auth" => "Auth\\AuthController",
+    "password" => "Auth\\PasswordController",
 ]);
 /*
 get("/", ['middleware' => 'auth', function() {
    return view("home");
 }]);
 */
+get("/", function() {
+    return view("login");
+});
 
 $router->group(["middleware" => "auth"], function($router) {
-    
-    get("users/new", "UserController@create");
+
+    get("/", function(UserController $userController) {
+        return $userController->show(Auth::User()->id);
+    });
     get("users/edit/{user_id}", "UserController@edit");
-    get("/", "UserController@index");
+    post("users/edit/{user_id}", "UserController@update");
+    post("estates/edit/{estate_id}", "EstateController@update");
+
+});
+
+
+$router->group(["middleware" => ["auth", "admin"]], function($router) {
+
+    get("users", "UserController@index");
+    get("users/new", "UserController@create");
     get("users/{user_id}", "UserController@show");
-    
     get("emails/new", "EmailController@create");
     get("emails/edit/{email_id}", "EmailController@edit");
     get("emails", "EmailController@index");
@@ -39,13 +50,9 @@ $router->group(["middleware" => "auth"], function($router) {
 
     post("users/{user_id}/new-payment", "PaymentController@store");
     post("users/new", "UserController@store");
-    post("users/edit/{user_id}", "UserController@update");
-    post("estates/edit/{estate_id}", "EstateController@update");
     post("emails/new", "EmailController@store");
     post("emails/edit/{email_id}", "EmailController@update");
-
 });
-
 
 
 // API routes

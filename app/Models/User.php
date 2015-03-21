@@ -54,4 +54,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne("App\\Models\\Payment")->where("signup_fee", 1);
     }
 
+    public function scopeIsAdmin($query)
+    {
+        return $query->whereisAdmin(1);
+    }
+
 }
