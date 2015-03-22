@@ -73,6 +73,7 @@
                                 var mapZoom = 16,
                                     centerLat = {{{ $user->estates[0]->lat }}},
                                     centerLon = {{{ $user->estates[0]->lon }}},
+                                    disableDefaultUI = true,
                                     loc = {
                                         'name': '{{{ $user->name }}}',
                                         'name2': '{{{ isset($user->name2) ? $user->name2 : "" }}}',
