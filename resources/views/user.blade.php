@@ -34,6 +34,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                
                             </div>
 
                             @if (Auth::User()->isAdmin)

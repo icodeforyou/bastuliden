@@ -17,11 +17,7 @@ Route::controllers([
     "auth" => "Auth\\AuthController",
     "password" => "Auth\\PasswordController",
 ]);
-/*
-get("/", ['middleware' => 'auth', function() {
-   return view("home");
-}]);
-*/
+
 get("/", function() {
     return view("login");
 });

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUserPost;
 use App\Models\Estates;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -117,7 +118,9 @@ class UserController extends Controller {
             "email" => Input::get("email")
         ]);
 
-        return redirect("/users/" . $user_id);
+        $to = Auth::User()->id === $user_id ? "/" : "/users/" . $user_id;
+
+        return redirect($to);
     }
 
     /**
