@@ -30,12 +30,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Oktorp fiber</a>
+                <a class="navbar-brand" href="/">Oktorp fiber</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Hem</a></li>
+                    <li><a href="/user">Hem</a></li>
                     @if (Auth::check() && Auth::User()->isAdmin)
                        <li><a href="/users">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>

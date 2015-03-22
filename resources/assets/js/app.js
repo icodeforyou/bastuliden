@@ -24,7 +24,7 @@ function initialize() {
 
     var mapOptions = {
         center: { lat: centerLat, lng: centerLon },
-        zoom: 16,
+        zoom: mapZoom !== undefined ? mapZoom : 16,
         mapTypeId: google.maps.MapTypeId.SATELLITE,
         disableDefaultUI: true
     };
@@ -32,7 +32,8 @@ function initialize() {
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     for (var i = 0; i < loc.estates.length; i++) {
-        var infoContent = "<div><strong>" + loc.name + (loc.name2.length ? " & " + loc.name2 : "") + "</strong><br />";
+        var infoContent = "";
+        infoContent += loc.name !== undefined ? "<div><strong>" + loc.name + (loc.name2.length ? " & " + loc.name2 : "") + "</strong><br />" : "";
         infoContent += loc.estates[i].address + "<br />";
         infoContent += loc.estates[i].property_nbr;
         infoContent += "</div>";

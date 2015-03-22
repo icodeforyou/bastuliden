@@ -118,7 +118,7 @@ class UserController extends Controller {
             "email" => Input::get("email")
         ]);
 
-        $to = Auth::User()->id === $user_id ? "/" : "/users/" . $user_id;
+        $to = Auth::User()->id === $user_id ? "/user" : "/users/" . $user_id;
 
         return redirect($to);
     }

@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\UserController;
+use App\Models\Estates;
 
 Route::controllers([
     "auth" => "Auth\\AuthController",
@@ -19,15 +20,17 @@ Route::controllers([
 ]);
 
 get("/", function() {
-    return view("login");
+    return view("welcome")->with(["estates" => Estates::all()->toArray()]);
 });
 
 $router->group(["middleware" => "auth"], function($router) {
 
-    get("/", function(UserController $userController) {
+    get("/user", function(UserController $userController) {
         return $userController->show(Auth::User()->id);
     });
+
     get("users/edit/{user_id}", "UserController@edit");
+
     post("users/edit/{user_id}", "UserController@update");
     post("estates/edit/{estate_id}", "EstateController@update");
     post("estates/create/", "EstateController@store");

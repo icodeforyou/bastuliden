@@ -23,6 +23,7 @@
             .content {
                 text-align: center;
                 display: inline-block;
+                width:100%
             }
 
             .title {
@@ -30,44 +31,29 @@
                 margin-bottom: 40px;
             }
 
+            #map-canvas img { max-width: none; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Oktorp<br />fiber</div>
-                <h4>Våra medlemmar</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Adress</th>
-                            <th>Fastighetsbeteckning</th>
-                            <th>Betalt årsavgift</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->address }}</td>
-                            <td>{{ $user->house_number }}</td>
-                            <td style="text-align: center; vertical-align:middle">
-                                {{ $user->signup_fee_paid ? "Ja" : "Nej" }}
-                            </td>
-                            <td>
-                                <a href="/user/{{ $user->id }}" class="btn-xs btn btn-primary">Hantera</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="title">Oktorp fiber</div>
+                <script>
+                    var mapZoom = 14;
+                    var loc = {
+                        'estates':  <?=json_encode($estates);?>
+                    };
+                </script>
+
+                <div id="map-canvas" style="height:400px; width:100%"></div>
+                <a href="/auth/login">Logga in</a> | <a href="/auth/register">Registrera</a>
             </div>
 
         </div>
-        
-        
 
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnxx8GSwo9wTevNlsWOM2mvlTkXMc3I38"></script>
         <script src="js/all.js"></script>
     </body>
 </html>
