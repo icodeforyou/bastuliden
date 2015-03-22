@@ -70,13 +70,14 @@
                         </div>
                         <div class="col-md-4">
                             <script>
-                            
-                                var loc = {
-                                    'name': '{{{ $user->name }}}',
-                                    'name2': '{{{ isset($user->name2) ? $user->name2 : "" }}}',
-                                    'estates':  <?=json_encode($user->estates);?>
-                                };
-
+                                var mapZoom = 16,
+                                    centerLat = {{{ $user->estates[0]->lat }}},
+                                    centerLon = {{{ $user->estates[0]->lon }}},
+                                    loc = {
+                                        'name': '{{{ $user->name }}}',
+                                        'name2': '{{{ isset($user->name2) ? $user->name2 : "" }}}',
+                                        'estates':  <?=json_encode($user->estates);?>
+                                    };
                             </script>
                             <div id="map-canvas" style="height:200px"></div>
 

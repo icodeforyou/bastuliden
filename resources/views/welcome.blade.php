@@ -1,7 +1,7 @@
 <html>
     <head>
         <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/app.css"/>
+
         <style>
             body {
                 margin: 0;
@@ -28,7 +28,10 @@
 
             .title {
                 font-size: 96px;
-                margin-bottom: 40px;
+            }
+
+            .links {
+                font-size: 18px
             }
 
             #map-canvas img { max-width: none; }
@@ -38,15 +41,20 @@
         <div class="container">
             <div class="content">
                 <div class="title">Oktorp fiber</div>
+                <p class="links">
+                    <a href="/auth/login">Logga in</a> | <a href="/auth/register">Registrera</a>
+                </p>
                 <script>
-                    var mapZoom = 14;
-                    var loc = {
-                        'estates':  <?=json_encode($estates);?>
-                    };
+                    var mapZoom = 13,
+                        centerLat = 56.876142,
+                        centerLon = 12.6819597,
+                        disableDefaultUI = false,
+                        loc = {
+                            'estates':  <?=json_encode($estates);?>
+                        };
                 </script>
 
                 <div id="map-canvas" style="height:400px; width:100%"></div>
-                <a href="/auth/login">Logga in</a> | <a href="/auth/register">Registrera</a>
             </div>
 
         </div>
