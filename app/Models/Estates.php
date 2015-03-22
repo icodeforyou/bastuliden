@@ -14,4 +14,9 @@ class Estates extends Model {
         return $this->belongsTo("App\\Models\\User");
     }
 
+    public function setPropertyNbrAttribute($value)
+    {
+        return $this->attributes['property_nbr'] = strtoupper($value);
+    }
+
 }

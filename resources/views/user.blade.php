@@ -34,7 +34,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                
+                                <button data-toggle="modal" data-target="#estate" class="btn btn-xs btn-primary">Lägg till fastighet</button>
                             </div>
 
                             @if (Auth::User()->isAdmin)
@@ -98,6 +98,7 @@
         </div>
     </div>
     @include("modals.pay")
+    @include("modals.add-estate")
 </div>
 
 @endsection

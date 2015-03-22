@@ -30,6 +30,7 @@ $router->group(["middleware" => "auth"], function($router) {
     get("users/edit/{user_id}", "UserController@edit");
     post("users/edit/{user_id}", "UserController@update");
     post("estates/edit/{estate_id}", "EstateController@update");
+    post("estates/create/", "EstateController@store");
 
 });
 

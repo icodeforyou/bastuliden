@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class UpdateEstatePost extends Request {
+class StoreEstatePost extends Request {
 
     /**
      * Determine if the user is authorized to make this request.

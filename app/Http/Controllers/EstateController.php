@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\UpdateEstatePost;
+use App\Http\Requests\StoreEstatePost;
 use App\Models\Estates;
 use Illuminate\Http\Request;
 
@@ -32,11 +32,15 @@ class EstateController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
+     * @param StoreEstatePost $estatePost
+     * @param Estates $estates
      * @return Response
      */
-    public function store()
+    public function store(StoreEstatePost $estatePost, Estates $estates)
     {
-        //
+        $estates->create($estatePost->except("_token"));
+
+        return redirect("/");
     }
 
     /**
@@ -65,11 +69,11 @@ class EstateController extends Controller {
      * Update the specified resource in storage.
      *
      * @param $estateId
-     * @param UpdateEstatePost $request
+     * @param StoreEstatePost $request
      * @param Estates $estates
      * @return Response
      */
-    public function update($estateId, UpdateEstatePost $request, Estates $estates)
+    public function update($estateId, StoreEstatePost $request, Estates $estates)
     {
         $estates->find($estateId)->update([
             "address" => $request->input("address"),
