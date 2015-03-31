@@ -25,7 +25,7 @@
                                     @foreach ($emails as $email)
                                         <tr>
                                             <td>{{ $email->subject }}</td>
-                                            <td>{{ implode(",", $email->recipients) }}</td>
+                                            <td>{{ count($email->recipients) }} mottagare</td>
                                             <td>{{ $email->created_at }}</td>
                                             <td>{{ $email->sentout_at }}</td>
                                             <td>
