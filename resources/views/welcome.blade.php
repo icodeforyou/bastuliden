@@ -61,7 +61,7 @@
 
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnxx8GSwo9wTevNlsWOM2mvlTkXMc3I38"></script>
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCnxx8GSwo9wTevNlsWOM2mvlTkXMc3I38"></script>
         <script src="js/all.js"></script>
     </body>
 </html>
