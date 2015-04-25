@@ -70,7 +70,7 @@ class EmailController extends Controller {
 		$email = $this->email->find($Id);
 
 		$res = Mail::send("emails.newsletter", ["email" => $email->email_content], function ($message) use ($email) {
-            $message->from("no-reply@oktorp.se");
+            $message->from("fiber@oktorp.se");
             $message->replyTo("fiber@oktorp.se");
             $message->to($email->recipients)->subject($email->subject);
         });
