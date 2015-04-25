@@ -30,7 +30,7 @@ class EmailController extends Controller {
 	 */
 	public function index()
 	{
-		return view("emails", ["emails" => $this->email->get()->sortBy("created_at")]);
+		return view("emails", ["emails" => $this->email->get()->sortByDesc("created_at")]);
 	}
 
 	/**
