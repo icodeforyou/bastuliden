@@ -14,7 +14,7 @@ use Carbon;
 
 class EmailController extends Controller {
 
-	/**
+    /**
      * @var Email
      */
     private $email;
@@ -23,120 +23,128 @@ class EmailController extends Controller {
         $this->email = $email;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view("emails", ["emails" => $this->email->get()->sortByDesc("created_at")]);
-	}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return view("emails", ["emails" => $this->email->get()->sortByDesc("created_at")]);
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create(User $user)
-	{
-		$users = $user->visible()->get();
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create(User $user)
+    {
+        $users = $user->visible()->get();
 
-		$usersWithEmail = $users->filter(function($user) {
-			return strlen($user->email)>0 ? $user : false; 
-		});
+        $usersWithEmail = $users->filter(function($user) {
+            return strlen($user->email)>0 ? $user : false;
+        });
 
-		return view("email", ["users" => $usersWithEmail]);
-	}
+        return view("email", ["users" => $usersWithEmail]);
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store(StoreEmailPost $request)
-	{
-		$this->email->create([
-			"email_content" => $request->input("email"),
-			"subject" => $request->input("subject"),
-			"recipients" => $request->input("recipients")
-		]);
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(StoreEmailPost $request)
+    {
+        $this->email->create([
+            "email_content" => $request->input("email"),
+            "subject" => $request->input("subject"),
+            "recipients" => $request->input("recipients")
+        ]);
 
-		return redirect("/emails");
-	}
+        return redirect("/emails");
+    }
 
-	public function send($Id)
-	{
-		$email = $this->email->find($Id);
+    /**
+     * @param $Id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function send($Id)
+    {
+        $email = $this->email->find($Id);
 
-		$res = Mail::send("emails.newsletter", ["email" => $email->email_content], function ($message) use ($email) {
+        $res = Mail::send("emails.newsletter", ["email" => $email->email_content], function ($message) use ($email) {
             $message->from("fiber@oktorp.se");
             $message->replyTo("fiber@oktorp.se");
             $message->to($email->recipients)->subject($email->subject);
         });
 
         $email->update([
-        	"sentout_at" => app("Carbon\\Carbon")
-       	]);
+            "sentout_at" => app("Carbon\\Carbon")
+        ]);
         
         return redirect("/emails");
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		return view("view_email", ["email" => $this->email->find($id)]);
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        return view("view_email", ["email" => $this->email->find($id)]);
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($Id, User $user)
-	{
-		$users = $user->visible()->get();
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $Id
+     * @param User $user
+     * @return Response
+     * @internal param int $id
+     */
+    public function edit($Id, User $user)
+    {
+        $users = $user->visible()->get();
 
-		$usersWithEmail = $users->filter(function($user) {
-			return strlen($user->email)>0 ? $user : false; 
-		});
+        $usersWithEmail = $users->filter(function($user) {
+            return strlen($user->email)>0 ? $user : false;
+        });
 
-		return view("email", ["users" => $usersWithEmail, "email" => $this->email->find($Id)]);
-	}
+        return view("email", ["users" => $usersWithEmail, "email" => $this->email->find($Id)]);
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($Id, StoreEmailPost $request)
-	{
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $Id
+     * @param StoreEmailPost $request
+     * @return Response
+     * @internal param int $id
+     */
+    public function update($Id, StoreEmailPost $request)
+    {
 
-		$this->email->find($Id)->update([
-			"email_content" => $request->input("email"),
-			"subject" => $request->input("subject"),
-			"recipients" => $request->input("recipients")
-		]);
+        $this->email->find($Id)->update([
+            "email_content" => $request->input("email"),
+            "subject" => $request->input("subject"),
+            "recipients" => $request->input("recipients")
+        ]);
 
-		return redirect("/emails");
-	}
+        return redirect("/emails");
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
 }

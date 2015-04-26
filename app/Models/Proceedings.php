@@ -7,7 +7,7 @@ class Proceedings extends Model {
 
     protected $table = "proceedings";
 
-    protected $fillable = ["proceeding", "proceeding_date"];
+    protected $fillable = ["proceeding", "proceeding_date", "label"];
 
 
 }

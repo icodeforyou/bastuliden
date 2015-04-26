@@ -9,11 +9,21 @@
                     <div class="panel-body">
                         <h2>Ange innehåll</h2>
                         <form action="/proceedings/{{ isset($proceeding) ? "edit/" . $proceeding->id : "new" }}" method="post">
-
-                            <div class="form-group">
-                                <label>Datum</label>
-                                <input class="form-control" type="text" name="proceeding_date" value="{{ isset($proceeding) ? $proceeding->proceeding_date : "" }}" />
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Etikett</label>
+                                        <input class="form-control" type="text" name="label" value="{{ isset($proceeding) ? $proceeding->label : "" }}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Datum</label>
+                                        <input class="form-control" type="text" name="proceeding_date" value="{{ isset($proceeding) ? $proceeding->proceeding_date : "" }}" />
+                                    </div>
+                                </div>
                             </div>
+
 
                             <div class="form-group">
                                 <label>Protokoll</label>

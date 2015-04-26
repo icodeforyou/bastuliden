@@ -50,12 +50,14 @@ $router->group(["middleware" => ["auth", "admin"]], function($router) {
 
     get("proceedings", "ProceedingsController@index");
     get("proceedings/new", "ProceedingsController@create");
+    get("proceedings/edit/{proceeding_id}", "ProceedingsController@edit");
 
     post("users/{user_id}/new-payment", "PaymentController@store");
     post("users/new", "UserController@store");
     post("emails/new", "EmailController@store");
     post("emails/edit/{email_id}", "EmailController@update");
     post("proceedings/new", "ProceedingsController@store");
+    post("proceedings/edit/{proceeding_id}", "ProceedingsController@update");
 
 });
 

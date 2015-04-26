@@ -26,7 +26,7 @@ class ProceedingsController extends Controller {
      */
     public function index()
     {
-        return view("proceedings", ["proceedings" => $this->proceedings->all()]);
+        return view("proceedings", ["proceedings" => $this->proceedings->all()->sortByDesc("proceedings_date")]);
     }
 
     /**
@@ -47,10 +47,7 @@ class ProceedingsController extends Controller {
      */
     public function store(StoreProceedingRequest $proceedingRequest)
     {
-        $this->proceedings->create([
-            "proceeding" => $proceedingRequest->input("proceeding"),
-            "proceeding_date" => $proceedingRequest->input("proceeding_date")
-        ]);
+        $this->proceedings->create($proceedingRequest->all());
 
         return redirect("/proceedings");
     }
@@ -74,18 +71,22 @@ class ProceedingsController extends Controller {
      */
     public function edit($id)
     {
-        //
+        return view("new_proceeding", ["proceeding" => $this->proceedings->find($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param $Id
+     * @param StoreProceedingRequest $request
      * @return Response
+     * @internal param int $id
      */
-    public function update($id)
+    public function update($Id, StoreProceedingRequest $request)
     {
-        //
+        $this->proceedings->find($Id)->update($request->all());
+
+        return redirect("/proceedings/edit/" . $Id);
     }
 
     /**

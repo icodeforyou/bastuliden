@@ -14,13 +14,14 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Etikett</th>
                                             <th>Datum</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="2">
+                                            <td colspan="3">
                                                 <a href="/proceedings/new">Nytt protokoll</a>
                                             </td>
                                         </tr>
@@ -28,8 +29,11 @@
                                     <tbody>
                                     @foreach ($proceedings as $proceeding)
                                         <tr>
-                                            <td><a href="/proceedings/view/{{ $proceeding->id }}">{{ $proceeding->id }}</a></td>
+                                            <td><a href="/proceedings/view/{{ $proceeding->id }}">{{ $proceeding->label }}</a></td>
                                             <td>{{ $proceeding->proceeding_date }}</td>
+                                            <td>
+                                                <a href="/proceedings/edit/{{ $proceeding->id }}" class="btn btn-xs btn-success">Ändra</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
