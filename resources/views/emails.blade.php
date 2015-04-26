@@ -24,7 +24,7 @@
                                 <tbody>
                                     @foreach ($emails as $email)
                                         <tr>
-                                            <td>{{ $email->subject }}</td>
+                                            <td><a href="/emails/view/{{ $email->id }}">{{ $email->subject }}</a></td>
                                             <td>{{ count($email->recipients) }} mottagare</td>
                                             <td>{{ $email->created_at }}</td>
                                             <td>{{ $email->sentout_at }}</td>

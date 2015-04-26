@@ -90,7 +90,7 @@ class EmailController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return view("view_email", ["email" => $this->email->find($id)]);
 	}
 
 	/**
