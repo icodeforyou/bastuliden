@@ -29,8 +29,10 @@
                                             <td>{{ $email->created_at }}</td>
                                             <td>{{ $email->sentout_at }}</td>
                                             <td>
-                                                <a href="/emails/send/{{ $email->id }}" class="btn btn-xs btn-success">Skicka!</a>
-                                                <a href="/emails/edit/{{ $email->id }}" class="btn btn-xs btn-primary">Editera</a>
+                                                @if ($email->sentout_at === null)
+                                                    <a href="/emails/send/{{ $email->id }}" class="btn btn-xs btn-success">Skicka!</a>
+                                                    <a href="/emails/edit/{{ $email->id }}" class="btn btn-xs btn-primary">Editera</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
