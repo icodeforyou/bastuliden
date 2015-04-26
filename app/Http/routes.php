@@ -47,15 +47,20 @@ $router->group(["middleware" => ["auth", "admin"]], function($router) {
     get("emails/edit/{email_id}", "EmailController@edit");
     get("emails", "EmailController@index");
     get("emails/send/{email_id}", "EmailController@send");
-    get("emails/view/{email_id}", "EmailController@show");
+
+    get("proceedings", "ProceedingsController@index");
+    get("proceedings/new", "ProceedingsController@create");
 
     post("users/{user_id}/new-payment", "PaymentController@store");
     post("users/new", "UserController@store");
     post("emails/new", "EmailController@store");
     post("emails/edit/{email_id}", "EmailController@update");
+    post("proceedings/new", "ProceedingsController@store");
 
 });
 
+get("emails/view/{email_id}", "EmailController@show");
+get("proceedings/view/{proceeding_id}", "ProceedingsController@show");
 
 // API routes
 $router->group(["prefix" => "/api/v1", "namespace" => "Api"], function($router) {

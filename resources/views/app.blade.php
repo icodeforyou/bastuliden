@@ -39,6 +39,7 @@
                     @if (Auth::check() && Auth::User()->isAdmin)
                        <li><a href="/users">Medlemmar</a></li>
                        <li><a href="/users/new">Ny medlem</a></li>
+                       <li><a href="/proceedings">Protokoll</a></li>
                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utskick <span class="caret"></span></a>
                         <ul class="dropdown-menu">
