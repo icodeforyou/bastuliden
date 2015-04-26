@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ $email["subject"] }}</div>
                     <div class="panel-body">
-                        {{ $email["content"] }}
+                        {!! $email["email_content"] !!}
                     </div>
                 </div>
             </div>
