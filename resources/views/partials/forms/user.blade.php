@@ -13,8 +13,21 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <label for="email">E-post</label>
-    <input type="email" name="email" class="form-control" id="email" placeholder="Ange e-post" value="{{{ isset($user->email) ? $user->email : "" }}}">
-    {{ $errors->first("email") }}
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-group">
+            <label for="email">E-post</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Ange e-post" value="{{{ isset($user->email) ? $user->email : "" }}}">
+            {{ $errors->first("email") }}
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="business"{{ isset($user->business) && $user->business ? " checked" : "" }}> Är ett företag
+                </label>
+            </div>
+        </div>
+    </div>
 </div>
