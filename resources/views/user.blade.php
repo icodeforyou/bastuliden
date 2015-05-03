@@ -36,37 +36,6 @@
                                 </table>
                                 <button data-toggle="modal" data-target="#estate" class="btn btn-xs btn-primary">Lägg till fastighet</button>
                             </div>
-
-                            @if (Auth::User()->isAdmin)
-                                <h4>Inbetalningar</h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Summa</th>
-                                                <th>Typ</th>
-                                                <th>Datum</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="3" style="text-align: right">
-                                                    <button data-toggle="modal" data-target="#betala" class="btn btn-xs btn-primary">Notera betalning</button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            @foreach ($user->payments as $payment)
-                                                <tr>
-                                                    <td>{{ $payment->amount }}</td>
-                                                    <td>{{ $payment->signup_fee ? "Anmälningsavgift" : "Årsavgift" }}</td>
-                                                    <td>{{ $payment->created_at }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @endif
                         </div>
                         <div class="col-md-4">
                             <script>
@@ -82,12 +51,6 @@
                             </script>
                             <div id="map-canvas" style="height:200px"></div>
 
-                            @if (!$user->paidSignupFee && Auth::User()->isAdmin)
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>OBS!</strong> Har ej betalat anmälningsavgift
-                                </div>
-                            @endif
-
                             <p><strong>{{ $user->name }} {{ $user->name2 ? "& " . $user->name2 : "" }}</strong></p>
                             <p>{{ $user->address }}</p>
                             <p><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></p>
@@ -99,7 +62,6 @@
             </div>
         </div>
     </div>
-    @include("modals.pay")
     @include("modals.add-estate")
 </div>
 

@@ -17,7 +17,7 @@
                         </thead>
                         <tbody>
                         @foreach ($users as $user)
-                            <tr class="{{ $user->paidSignupFee ? "success" : "" }}" onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
+                            <tr onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td style="text-align: center">{{ count($user->estates) }}</td>
