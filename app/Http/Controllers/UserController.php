@@ -60,6 +60,7 @@ class UserController extends Controller {
              "name2" => $request->input("name2"),
              "email" => $request->input("email"),
              "visible" => 1,
+             "business" => $request->input("business"),
              "password" => Hash::make("fiber")
          ]);
 
@@ -115,7 +116,8 @@ class UserController extends Controller {
         $this->user->find($user_id)->update([
             "name" => Input::get("name"),
             "name2" => Input::get("name2"),
-            "email" => Input::get("email")
+            "email" => Input::get("email"),
+            "business" => Input::get("business")
         ]);
 
         $to = Auth::User()->id === $user_id ? "/user" : "/users/" . $user_id;
