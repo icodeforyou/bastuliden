@@ -39,19 +39,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $query->whereVisible(1);
     }
 
-    public function payments()
-    {
-        return $this->hasMany("App\\Models\\Payment")->orderBy("created_at", "desc");
-    }
-
     public function estates()
     {
         return $this->hasMany("App\\Models\\Estates");
-    }
-
-    public function paidSignupFee()
-    {
-        return $this->hasOne("App\\Models\\Payment")->where("signup_fee", 1);
     }
 
     public function scopeIsAdmin($query)

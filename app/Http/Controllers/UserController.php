@@ -31,7 +31,7 @@ class UserController extends Controller {
      */
     public function index(Estates $estates)
     {
-        $users = $this->user->visible()->with(["payments", "paidSignupFee", "estates"])->get()->sortBy("address");
+        $users = $this->user->visible()->with(["estates"])->get()->sortBy("address");
         return view("users", ["users" => $users, "num_estates" => $estates->all()->count()]);
     }
 
@@ -90,7 +90,7 @@ class UserController extends Controller {
      */
     public function show($id)
     {
-        return view("user", ["user" => $this->user->with(["payments", "paidSignupFee", "estates"])->find($id)]);
+        return view("user", ["user" => $this->user->with(["estates"])->find($id)]);
     }
 
     /**
