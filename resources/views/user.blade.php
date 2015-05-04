@@ -7,6 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     {{ $user->name }} {{ isset($user->name2) && strlen($user->name2) ? " & " . $user->name2 : "" }}
+
+                    @if (!$user->confirmed_interest)
+                        - <a href="/users/{{ $user->id }}/confirm-interest">Bekräfta fortsatt intresse</a>
+                    @endif
+
                     <span class="pull-right">
                         <a href="/users/edit/{{ $user->id }}" class="glyphicon glyphicon-pencil"></a>
                     </span>
@@ -51,10 +56,14 @@
                             </script>
                             <div id="map-canvas" style="height:200px"></div>
 
-                            <p><strong>{{ $user->name }} {{ $user->name2 ? "& " . $user->name2 : "" }}</strong></p>
+                            <div>
+                                <strong>{{ $user->name }} {{ $user->name2 ? "& " . $user->name2 : "" }}</strong><br />
+                                @if ($user->confirmed_interest)
+                                    <span class="label label-success">Bekräftat fortsatt intresse - {{ $user->confirmed_interest_date }}</span>
+                                @endif
+                            </div>
                             <p>{{ $user->address }}</p>
                             <p><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></p>
-
                         </div>
                     </div>
 

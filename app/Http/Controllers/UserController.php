@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Models\Estates;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -123,6 +124,20 @@ class UserController extends Controller {
         $to = Auth::User()->id === $user_id ? "/user" : "/users/" . $user_id;
 
         return redirect($to);
+    }
+
+    /**
+     * @param $user_id
+     * @param Carbon $carbon
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function confirmInterest($user_id, Carbon $carbon)
+    {
+        $this->user->find($user_id)->update([
+            "confirmed_interest" => 1,
+            "confirmed_interest_date" => $carbon->toDateString()
+        ]);
+        return redirect("/users/" . $user_id);
     }
 
     /**

@@ -58,6 +58,8 @@ $router->group(["middleware" => ["auth", "admin"]], function($router) {
     post("proceedings/new", "ProceedingsController@store");
     post("proceedings/edit/{proceeding_id}", "ProceedingsController@update");
 
+    get("users/{user_id}/confirm-interest", "UserController@confirmInterest");
+
 });
 
 get("emails/view/{email_id}", "EmailController@show");

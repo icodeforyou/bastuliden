@@ -12,14 +12,20 @@
                             <tr>
                                <th>Namn</th>
                                <th>E-post</th>
+                               <th>Bekräftat fortsatt intresse</th>
                                <th>Antal fastigheter</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($users as $user)
-                            <tr onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
+                            <tr class="{{ $user->confirmed_interest ? "success" : "" }}" onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td style="text-align: center">
+                                    @if ($user->confirmed_interest)
+                                        <span class="label label-success">{{ $user->confirmed_interest_date }}</span>
+                                    @endif
+                                </td>
                                 <td style="text-align: center">{{ count($user->estates) }}</td>
                             </tr>
                        @endforeach
