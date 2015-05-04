@@ -5,14 +5,16 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Oktorp fiber intressenter <span class="pull-right">{{ $num_estates }} fastigheter</span></div>
+                <div class="panel-heading">Oktorp fiber intressenter
+                    - <strong>{{ round($confirmed,1) }}% bekräftade</strong>
+                    <span class="pull-right">{{ $num_estates }} fastigheter</span>
+                </div>
                 <div class="table-responsive">
                     <table class="table users-table table-condensed">
                         <thead>
                             <tr>
                                <th>Namn</th>
                                <th>E-post</th>
-                               <th>Bekräftat fortsatt intresse</th>
                                <th>Antal fastigheter</th>
                             </tr>
                         </thead>
@@ -21,11 +23,6 @@
                             <tr class="{{ $user->confirmed_interest ? "success" : "" }}" onClick="window:location='/users/{{ $user->id }}';" style="cursor:pointer">
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td style="text-align: center">
-                                    @if ($user->confirmed_interest)
-                                        <span class="label label-success">{{ $user->confirmed_interest_date }}</span>
-                                    @endif
-                                </td>
                                 <td style="text-align: center">{{ count($user->estates) }}</td>
                             </tr>
                        @endforeach

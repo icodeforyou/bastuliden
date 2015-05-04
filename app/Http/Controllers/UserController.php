@@ -33,7 +33,7 @@ class UserController extends Controller {
     public function index(Estates $estates)
     {
         $users = $this->user->visible()->with(["estates"])->get()->sortBy("address");
-        return view("users", ["users" => $users, "num_estates" => $estates->all()->count()]);
+        return view("users", ["users" => $users, "num_estates" => $estates->all()->count(), "confirmed" => $this->user->visible()->count() / $this->user->confirmed()->count()]);
     }
 
     /**
