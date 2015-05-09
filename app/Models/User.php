@@ -36,6 +36,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $query->whereConfirmedInterest(1);
     }
 
+    public function scopeCanceled($query)
+    {
+        return $query->whereConfirmedInterest(2);
+    }
+
     public function estates()
     {
         return $this->hasMany("App\\Models\\Estates");

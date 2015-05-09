@@ -33,7 +33,12 @@ class UserController extends Controller {
     public function index(Estates $estates)
     {
         $users = $this->user->visible()->with(["estates"])->get()->sortBy("address");
-        return view("users", ["users" => $users, "num_estates" => $estates->all()->count(), "confirmed" => $this->user->confirmed()->count() / $this->user->visible()->count() * 100]);
+        return view("users", [
+            "users" => $users,
+            "num_estates" => $estates->all()->count(),
+            "confirmed" => $this->user->confirmed()->count() / $this->user->visible()->count() * 100,
+            "canceled" => $this->user->canceled()->count() / $this->user->visible()->count() * 100
+        ]);
     }
 
     /**
@@ -133,6 +138,20 @@ class UserController extends Controller {
     {
         $this->user->find($user_id)->update([
             "confirmed_interest" => 1,
+            "confirmed_interest_date" => $carbon->toDateString()
+        ]);
+        return redirect("/users/" . $user_id);
+    }
+
+    /**
+     * @param $user_id
+     * @param Carbon $carbon
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function cancelInterest($user_id, Carbon $carbon)
+    {
+        $this->user->find($user_id)->update([
+            "confirmed_interest" => 2,
             "confirmed_interest_date" => $carbon->toDateString()
         ]);
         return redirect("/users/" . $user_id);

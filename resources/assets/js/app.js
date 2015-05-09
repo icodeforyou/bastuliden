@@ -4,6 +4,10 @@ $( document ).ready(function() {
         $(this).toggleClass("active");
     });
 
+    $(".interest-changer").change(function() {
+        var url = $(".interest-changer option:selected").data("url");
+        window.location=url;
+    });
 });
 $(function()
 {
