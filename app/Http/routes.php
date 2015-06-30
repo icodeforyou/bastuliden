@@ -21,7 +21,7 @@ Route::controllers([
 ]);
 
 get("/", function() {
-    return view("welcome")->with(["estates" => Estates::all()->toArray(), "latestProtocol" => Proceedings::latestProtocol()->take(1)->get()]);
+    return view("welcome")->with(["estates" => Estates::all()->toArray(), "latestProtocol" => Proceedings::latestProtocol()->take(1)->first()]);
 });
 
 $router->group(["middleware" => "auth"], function($router) {
