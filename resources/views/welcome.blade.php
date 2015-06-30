@@ -56,7 +56,7 @@
 
                 <div id="map-canvas" style="height:400px; width:100%"></div>
                 <p class="links">
-                    <a href="/proceedings/view/{{ $latestProtocol->id }}">Senaste protokollet</a>
+                    <a href="/proceedings/view/{{ $latestProtocol["id"] }}">Senaste protokollet</a>
                 </p>
             </div>
 
