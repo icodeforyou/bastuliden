@@ -20,7 +20,7 @@ Route::controllers([
 ]);
 
 get("/", function() {
-    return view("welcome")->with(["estates" => Estates::all()->toArray()]);
+    return view("welcome")->with(["estates" => Estates::all()->toArray(), "latestProtocol" => Proceedings::latestProtocol()->take(1)->get()]);
 });
 
 $router->group(["middleware" => "auth"], function($router) {

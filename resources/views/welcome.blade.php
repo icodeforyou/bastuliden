@@ -42,7 +42,7 @@
             <div class="content">
                 <div class="title">Oktorp fiber</div>
                 <p class="links">
-                    <a href="/auth/login">Logga in</a> | <a href="/auth/register">Registrera</a>
+                    <a href="/auth/login">Logga in</a> | <a href="/auth/register">Registrera</a> | <a href="mailto:fiber@oktorp.se">Kontakt</a>
                 </p>
                 <script>
                     var mapZoom = 13,
@@ -55,6 +55,9 @@
                 </script>
 
                 <div id="map-canvas" style="height:400px; width:100%"></div>
+                <p class="links">
+                    <a href="/proceedings/view/{{ $latestProtocol->id }}">Senaste protokollet</a>
+                </p>
             </div>
 
         </div>

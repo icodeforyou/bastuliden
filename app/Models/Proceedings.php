@@ -9,5 +9,10 @@ class Proceedings extends Model {
 
     protected $fillable = ["proceeding", "proceeding_date", "label"];
 
+    public function scopeLatestProtocol($query)
+    {
+        return $query->orderBy("proceeding_date", "desc");
+    }
+
 
 }
